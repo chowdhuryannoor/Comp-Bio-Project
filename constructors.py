@@ -1,3 +1,5 @@
+from pydivsufsort import divsufsort, kasai
+import time
 
 def mapToRank(S):
     map = dict()
@@ -91,7 +93,6 @@ def printTree(node, level=0):
         printTree(child, level + 1)
 
 def constructST(SA, LCP, text):
-    text += '$'
     root = Node()
     v = root
     n = len(SA)
@@ -103,34 +104,36 @@ def constructST(SA, LCP, text):
             v = v.parent
         if sdepth(v) == lcp:
             child = Node()
-            child.label = text[SA[i] - 1:]
+            child.label = text[SA[i]:]
             v.addChild(child)
             v = child
         else:
             v.removeChild(prev)
             mainChild = Node()
-            start = SA[i - 1] - 1 + sdepth(v)
-            end = SA[i - 1] + lcp - 1
+            start = SA[i - 1] + sdepth(v)
+            end = SA[i - 1] + lcp
             mainChild.label = text[start:end]
             v.addChild(mainChild)
             child1 = Node()
-            start = SA[i - 1] - 1 + lcp
-            end = SA[i - 1] + sdepth(prev) - 1
+            start = SA[i - 1] + lcp
+            end = SA[i - 1] + sdepth(prev)
             child1.label = text[start:end]
             mainChild.addChild(child1)
             child2 = Node()
-            child2.label = text[(SA[i] - 1 + lcp):]
+            child2.label = text[(SA[i] + lcp):]
             mainChild.addChild(child2)
             v = child2
 
     return root
 
 if __name__ == "__main__":
-    s = 'banana'
-    SA = constructSA(s, len(s))
-    print(f'Suffix Array: {SA}')
-    LCP = constructLCP(s, SA)
-    print(f'LCP Array: {LCP}')
+    s = 'banana$'
+    SA = divsufsort(s)
+    LCP = list(kasai(s, SA))
+    LCP = LCP[-1:] + LCP[:-1]
+    SA = list(SA)
+    print(SA)
+    print(LCP)
     print('Suffix Tree:')
     ST = constructST(SA, LCP, s)
     printTree(ST)
