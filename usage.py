@@ -35,7 +35,6 @@ def main():
             # File format: (size in mB, time in seconds)
             with open(outpath_time, 'a') as outfile:
                 outfile.write(sys.argv[3] + "," + runtime + "\n")
-        break
 
 if __name__ == "__main__":
     main()
