@@ -47,7 +47,7 @@ class Tree:
             i = i + j   # advance past part in common
             n = n2      # continue down the tree
 
-def ukkonen_runtime(TEXT):
+def runtime(TEXT):
     startTime = time.time()
     suffix_tree = Tree(TEXT)
     endTime = time.time()

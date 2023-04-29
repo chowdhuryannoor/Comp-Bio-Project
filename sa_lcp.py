@@ -54,7 +54,7 @@ class Tree:
                 mainChild.addChild(child2, text[child2.start:child2.end])
                 v = child2
 
-def sa_lcp__runtime(TEXT):
+def runtime(TEXT):
     startTime = time.time()
     temp_sa= divsufsort(TEXT)
     temp_lcp = list(kasai(TEXT, temp_sa))

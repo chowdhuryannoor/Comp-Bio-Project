@@ -32,7 +32,7 @@ class Tree:
                 else:
                     cur.out[s[j]] = Node(s[j:])
                     
-def naive_runtime(TEXT):
+def runtime(TEXT):
     startTime = time.time()
     suffix_tree = Tree(TEXT)
     endTime = time.time()
