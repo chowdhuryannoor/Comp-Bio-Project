@@ -99,9 +99,11 @@ def constructST(SA, LCP, text):
     for i in range(n):
         lcp = LCP[i]
         prev = None
+        
         while sdepth(v) > lcp:
             prev = v
             v = v.parent
+        
         if sdepth(v) == lcp:
             child = Node()
             child.label = text[SA[i]:]
@@ -127,7 +129,7 @@ def constructST(SA, LCP, text):
     return root
 
 if __name__ == "__main__":
-    s = 'banana$'
+    s = 'nonsense$'
     SA = divsufsort(s)
     LCP = list(kasai(s, SA))
     LCP = LCP[-1:] + LCP[:-1]

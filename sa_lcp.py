@@ -54,25 +54,13 @@ class Tree:
                 mainChild.addChild(child2, text[child2.start:child2.end])
                 v = child2
 
-# def printTree(node, text, level=0):
-#     if not node:
-#         return
-#     label = 'root' if node.start == -1 else text[node.start:node.end]
-#     print("  " * level + str(label))
-#     for child in node.children:
-#         printTree(node.children[child], text, level + 1)
-
-def runtime(TEXT):
+def sa_lcp__runtime(TEXT):
     startTime = time.time()
-
     temp_sa= divsufsort(TEXT)
     temp_lcp = list(kasai(TEXT, temp_sa))
     SA = list(temp_sa)
     LCP = temp_lcp[-1:] + temp_lcp[:-1]
     suffix_tree = Tree(SA, LCP, TEXT)
-
     endTime = time.time()
-    # printTree(suffix_tree.root, TEXT)
-    return endTime - startTime
 
-# runtime("nonsense$")
+    return endTime - startTime

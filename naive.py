@@ -31,21 +31,9 @@ class Tree:
                         cur.out[s[j]] =	mid
                 else:
                     cur.out[s[j]] = Node(s[j:])
-
-# def printTree(node, level=0):
-#     if not node:
-#         return
-#     label = 'root' if node.lab == None else node.lab
-#     print("  " * level + str(label))
-#     for child in node.out:
-#         printTree(node.out[child], level + 1)
-
-def runtime(TEXT):
+                    
+def naive_runtime(TEXT):
     startTime = time.time()
     suffix_tree = Tree(TEXT)
     endTime = time.time()
-    
-    # printTree(suffix_tree.root)
     return endTime - startTime
-
-# runtime("nonsense$")
