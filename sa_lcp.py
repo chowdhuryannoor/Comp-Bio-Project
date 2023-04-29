@@ -62,5 +62,5 @@ def runtime(TEXT):
     LCP = temp_lcp[-1:] + temp_lcp[:-1]
     suffix_tree = Tree(SA, LCP, TEXT)
     endTime = time.time()
-
-    return endTime - startTime
+    
+    print(endTime - startTime)

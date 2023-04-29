@@ -6,4 +6,5 @@ def runtime(TEXT):
     startTime = time.time()
     suffix_tree = Tree({'A': TEXT}, builder=ukkonen.Builder)
     endTime = time.time()
-    return endTime - startTime
+    
+    print(endTime - startTime)

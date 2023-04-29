@@ -36,4 +36,4 @@ def runtime(TEXT):
     startTime = time.time()
     suffix_tree = Tree(TEXT)
     endTime = time.time()
-    return endTime - startTime
+    print(endTime - startTime)
